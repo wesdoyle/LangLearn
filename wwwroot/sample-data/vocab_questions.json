@@ -1,13 +1,13 @@
 ﻿[
   {
-    "cyrillic": "A",
-    "phoneme": "a"
+    "question": "Спасибо",
+    "answer": "Thank You"
   }, {
-    "cyrillic": "Д",
-    "phoneme": "de"
+    "question": "Привет",
+    "answer": "Hello"
   },
   {
-    "cyrillic": "Ж",
-    "phoneme": "zhe"
+    "question": "Пожалуйста",
+    "answer": "You're Welcome"
   }
 ]

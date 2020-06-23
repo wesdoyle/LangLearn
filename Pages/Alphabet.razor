@@ -1,5 +1,8 @@
-@page "/alphabet"
-@inject HttpClient Http
+@page "/alphabet";
+@using LangLearn.Services;
+@using LangLearn.ViewModels;
+@inject HttpClient Http;
+@inject IAlphabetService AlphabetService;
 
 <h1>Cyrillic Alphabet Review</h1>
 <p>Table of Cyrillic Characters</p>
@@ -25,21 +28,15 @@ else
                     <td>@alpha.Phoneme</td>
                 </tr>
             }
+
         </tbody>
     </table>
 }
 
 @code {
-    private CyrillicAlphaMapping[] _alphaMappings;
+    private List<CyrillicAlphaMapping> _alphaMappings;
 
-    protected override async Task OnInitializedAsync()
-    {
-        _alphaMappings = await Http.GetFromJsonAsync<CyrillicAlphaMapping[]>("sample-data/cyrillic.json");
-    }
-
-    private class CyrillicAlphaMapping 
-    {
-        public string Cyrillic { get; set; }
-        public string Phoneme { get; set; }
+    protected override async Task OnInitializedAsync() {
+        _alphaMappings = await AlphabetService.GetAlphabet();
     }
 }
