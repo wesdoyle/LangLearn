@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  lang_learn_web:
+    build:
+      context: ./
+
+    ports:
+    - 8080:80
+
+    restart:
+      unless-stopped

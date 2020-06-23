@@ -1,0 +1,45 @@
+@page "/alphabet"
+@inject HttpClient Http
+
+<h1>Cyrillic Alphabet Review</h1>
+<p>Table of Cyrillic Characters</p>
+
+@if (_alphaMappings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cyrillic</th>
+                <th>Latin Phoneme</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var alpha in _alphaMappings)
+            {
+                <tr>
+                    <td>@alpha.Cyrillic</td>
+                    <td>@alpha.Phoneme</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private CyrillicAlphaMapping[] _alphaMappings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _alphaMappings = await Http.GetFromJsonAsync<CyrillicAlphaMapping[]>("sample-data/cyrillic.json");
+    }
+
+    private class CyrillicAlphaMapping 
+    {
+        public string Cyrillic { get; set; }
+        public string Phoneme { get; set; }
+    }
+}
