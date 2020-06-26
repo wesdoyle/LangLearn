@@ -20,6 +20,7 @@ namespace LangLearn
 
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped<IAlphabetService, AlphabetService>();
+            builder.Services.AddScoped<IVocabService, VocabService>();
 
             await builder.Build().RunAsync();
         }

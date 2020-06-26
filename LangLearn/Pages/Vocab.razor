@@ -1,38 +1,47 @@
 @page "/vocab"
 @inject HttpClient Http
+@using LangLearn.Services
 @using LangLearn.ViewModels;
+@inject IVocabService VocabService;
 
-@if (_vocab == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Question</th>
-                <th>Answer</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var entry in _vocab)
-            {
-                <tr>
-                    <td>@entry.Question</td>
-                    <td>@entry.Answer</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<div class="question-card">
+    @if (_isAnswer){ 
+        <div class="card-body card-answer">
+            @_currentQuestion.Answer
+        </div>
+    } else {
+        <div class="card-body card-question">
+            @_currentQuestion.Question
+        </div>
+    }
+</div>
+
+<div class="vocab-actions">
+    <button @onclick="ToggleAnswer">
+        @_toggleText
+    </button>
+    
+    <button @onclick="GetNextCard">
+        Next Question 
+    </button>
+</div>
 
 @code {
-    private VocabQuestion[] _vocab;
+    private VocabQuestion _currentQuestion;
+    private bool _isAnswer;
+    private string _toggleText = "Show Answer";
 
-    protected override async Task OnInitializedAsync()
-    {
-        _vocab = await Http.GetFromJsonAsync<VocabQuestion[]>("sample-data/vocab_questions.json");
+    protected override async Task OnInitializedAsync() {
+        _currentQuestion = await VocabService.GetNextQuestion();
     }
 
+    private async Task GetNextCard(MouseEventArgs e) {
+        _isAnswer = false;
+        _currentQuestion = await VocabService.GetNextQuestion();
+    }
+
+    private void ToggleAnswer() {
+        _isAnswer = !_isAnswer;
+        _toggleText = _isAnswer ? "Hide Answer" : "Show Answer";
+    }
 }

@@ -1,0 +1,38 @@
+@page "/vocab-list"
+@inject HttpClient Http
+@using LangLearn.Services
+@using LangLearn.ViewModels;
+@inject IVocabService VocabService;
+
+@if (_vocab == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entry in _vocab)
+            {
+                <tr>
+                    <td>@entry.Question</td>
+                    <td>@entry.Answer</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private VocabQuestion[] _vocab;
+
+    protected override async Task OnInitializedAsync() {
+        _vocab = await VocabService.GetAllVocab();
+    }
+}

@@ -3,11 +3,43 @@
     "question": "Спасибо",
     "answer": "Thank You"
   }, {
-    "question": "Привет",
-    "answer": "Hello"
-  },
-  {
-    "question": "Пожалуйста",
-    "answer": "You're Welcome"
-  }
+  "question": "Привет",
+  "answer": "Hello"
+}, {
+  "question": "Пожалуйста",
+  "answer": "You're Welcome"
+}, {
+  "question": "Программист использовал компьютер.",
+  "answer": "The programmer used the computer."
+}, {
+  "question": "сказать",
+  "answer": "To speak"
+}, {
+  "question": "собака",
+  "answer": "Dog"
+}, {
+  "question": "россиянин",
+  "answer": "Russian"
+}, {
+  "question": "улыбаться",
+  "answer": "Smile"
+}, {
+  "question": "кошка",
+  "answer": "Cat"
+}, {
+  "question": "радость",
+  "answer": "Happiness"
+}, {
+  "question": "Добро пожаловать!",
+  "answer": "Welcome"
+}, {
+  "question": "Как Ваши дела?",
+  "answer": "How are you?"
+}, {
+  "question": "До свидания",
+  "answer": "Goodbye"
+}, {
+  "question": "Удачи!",
+  "answer": "Good Luck"
+}
 ]
